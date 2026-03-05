@@ -31,7 +31,6 @@ public:
 
 	virtual bool RetargetFromBodyState(const FOculusXRBodyState& BodyState,
 		const USkeletalMeshComponent* SkeletalMeshComponent,
-		const float WorldScale,
 		FPoseContext& Output) override;
 
 	virtual void SetDebugPoseMode(const EOculusXRBodyDebugPoseMode mode) override;
@@ -202,8 +201,7 @@ private:
 	// Separated so we can better identify/mark in a profiler capture.
 	bool UpdateSkeleton(const FOculusXRBodyState& BodyState,
 		const FBoneContainer& BoneContainer,
-		const USkeletalMeshComponent* SkeletalMeshComponent,
-		const float WorldScale);
+		const USkeletalMeshComponent* SkeletalMeshComponent);
 
 	bool ProcessFrameRetargeting(const FOculusXRBodyState& BodyState,
 		const USkeletalMeshComponent* SkeletalMeshComponent,

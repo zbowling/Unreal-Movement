@@ -32,11 +32,6 @@ void FAnimNode_OculusXRBodyTracking::Initialize_AnyThread(const FAnimationInitia
 
 	if (SkeletalMeshComponent == nullptr)
 		UE_LOG(LogOculusXRRetargeting, Warning, TEXT("SkeletalMeshComponent is null"))
-
-	if (!FOculusXRRetargetingUtils::GetUnitScaleFactorFromSettings(SkeletalMeshComponent->GetWorld(), Scale))
-	{
-		UE_LOG(LogOculusXRRetargeting, Warning, TEXT("Cannot get world settings for body retargetting asset."));
-	}
 }
 
 void FAnimNode_OculusXRBodyTracking::PreUpdate(const UAnimInstance* InAnimInstance) {}
@@ -55,7 +50,7 @@ void FAnimNode_OculusXRBodyTracking::Evaluate_AnyThread(FPoseContext& Output)
 	}
 
 	FOculusXRBodyState BodyState;
-	OculusXRMovement::GetBodyState(BodyState, Scale);
+	OculusXRMovement::GetBodyState(BodyState);
 
 	if (!RetargeterInstance)
 	{
@@ -66,7 +61,7 @@ void FAnimNode_OculusXRBodyTracking::Evaluate_AnyThread(FPoseContext& Output)
 	{
 		RetargeterInstance->Initialize(RetargetingMode, RootMotionBehavior, ForwardMesh, &BoneRemapping);
 	}
-	if (!RetargeterInstance->RetargetFromBodyState(BodyState, SkeletalMeshComponent, Scale, Output))
+	if (!RetargeterInstance->RetargetFromBodyState(BodyState, SkeletalMeshComponent, Output))
 	{
 		if (SkeletalMeshComponent && SkeletalMeshComponent->GetWorld()->IsGameWorld())
 		{

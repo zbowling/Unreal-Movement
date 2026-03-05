@@ -153,6 +153,4 @@ private:
 	// U Type Data - cached from other location
 	USkeletalMeshComponent* SkeletalMeshComponent = nullptr;
 	USkeleton* Skeleton = nullptr;
-
-	float Scale = 100.f;
 };

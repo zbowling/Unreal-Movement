@@ -57,7 +57,6 @@ public:
 
 	virtual bool RetargetFromBodyState(const FOculusXRBodyState& BodyState,
 		const USkeletalMeshComponent* SkeletalMeshComponent,
-		const float WorldScale,
 		FPoseContext& Output) = 0;
 
 	virtual EOculusXRBodyRetargetingMode GetRetargetingMode() = 0;

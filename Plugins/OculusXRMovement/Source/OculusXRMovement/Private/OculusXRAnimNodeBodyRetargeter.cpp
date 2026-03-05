@@ -135,10 +135,9 @@ bool FOculusXRAnimNodeBodyRetargeter::IsInitialized() const
 bool FOculusXRAnimNodeBodyRetargeter::UpdateSkeleton(
 	const FOculusXRBodyState& BodyState,
 	const FBoneContainer& BoneContainer,
-	const USkeletalMeshComponent* SkeletalMeshComponent,
-	const float WorldScale)
+	const USkeletalMeshComponent* SkeletalMeshComponent)
 {
-	if (BodyState.IsActive && IsInitialized() && SourceReferenceInfo.RequiresUpdate(BodyState.SkeletonChangedCount, BoneContainer.GetSerialNumber()) && OculusXRMovement::GetBodySkeleton(SourceReferenceInfo.SourceReferenceSkeleton, WorldScale))
+	if (BodyState.IsActive && IsInitialized() && SourceReferenceInfo.RequiresUpdate(BodyState.SkeletonChangedCount, BoneContainer.GetSerialNumber()) && OculusXRMovement::GetBodySkeleton(SourceReferenceInfo.SourceReferenceSkeleton))
 
 	{
 #if OCULUS_XR_TRACKING_ENABLE_DEBUG_DRAW
@@ -529,10 +528,9 @@ TTuple<float, float> FOculusXRAnimNodeBodyRetargeter::GetFrameMaxCurrentAndUnMod
 bool FOculusXRAnimNodeBodyRetargeter::RetargetFromBodyState(
 	const FOculusXRBodyState& BodyState,
 	const USkeletalMeshComponent* SkeletalMeshComponent,
-	const float WorldScale,
 	FPoseContext& Output)
 {
-	if (SkeletalMeshComponent && UpdateSkeleton(BodyState, Output.Pose.GetBoneContainer(), SkeletalMeshComponent, WorldScale))
+	if (SkeletalMeshComponent && UpdateSkeleton(BodyState, Output.Pose.GetBoneContainer(), SkeletalMeshComponent))
 	{
 		return ProcessFrameRetargeting(BodyState, SkeletalMeshComponent, Output);
 	}

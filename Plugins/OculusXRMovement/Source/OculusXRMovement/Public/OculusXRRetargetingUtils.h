@@ -68,11 +68,6 @@ struct OCULUSXRRETARGETING_API FOculusXRRetargetingUtils
 		return RotMatrix.Rotator().Quaternion();
 	}
 
-	/**
-	 * Returns the scale factor from the world settings
-	 */
-	static bool GetUnitScaleFactorFromSettings(UWorld* World, float& OutWorldToMeters);
-
 private:
 	/**
 	 * Oculus tracking space is using +X as its forward direction.
